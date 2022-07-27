@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // Export a function to be called from index.js
 module.exports = (dbName) => {
@@ -11,5 +11,7 @@ module.exports = (dbName) => {
     .then(() => {
       console.log(`Successfully connected to ${dbName}`);
     })
-    .catch((err) => console.log(`mongoose connection to ${dbName} failed:`, err));
+    .catch((err) =>
+      console.log(`mongoose connection to ${dbName} failed:`, err)
+    );
 };
