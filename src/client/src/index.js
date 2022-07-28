@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import {
   Destinations,
+  Layout,
   Home,
   NotFound,
   OneDestination,
@@ -25,15 +26,23 @@ root.render(
         to avoid repeating path sections.
         */}
         <Route path="/" element={<App />}>
-          {/* '/' with nothing after will render the index element */}
-          <Route index element={<Home />} />
-          <Route path="destinations" element={<Destinations />} />
-          <Route path="destinations/new" element={<NewDestination />} />
+          {/*
+          Any view nested in the Layout route will be rendered as a child
+          of the Layout component so all child views of the Layout are
+          consistently laid out on the page based on where the Layout places
+          the <Outlet />.
+          */}
+          <Route element={<Layout />}>
+            {/* '/' with nothing after will render the index element */}
+            <Route index element={<Home />} />
+            <Route path="destinations" element={<Destinations />} />
+            <Route path="destinations/new" element={<NewDestination />} />
 
-          {/* Display this component if route doesn't match any above. */}
-          <Route path="*" element={<NotFound />} />
-          {/* Redirect if route doesn't match any above. */}
-          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+            {/* Display this component if route doesn't match any above. */}
+            <Route path="*" element={<NotFound />} />
+            {/* Redirect if route doesn't match any above. */}
+            {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
