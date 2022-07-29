@@ -1,4 +1,7 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+import { Box, Container } from '@mui/material';
+
+import { TopAppBar } from 'components';
 
 /**
  * A common layout and style to be consistently applied to the all child views.
@@ -6,15 +9,17 @@ import { Outlet } from "react-router-dom";
  */
 export const Layout = (_props) => {
   return (
-    <div>
-      <nav>Navbar from layout</nav>
+    <Box>
+      <TopAppBar />
       {/*
       Outlet will be the view component that's matched based on the path from the
       views nested inside the Layout <Route> in index.js
 
       This let's us choose where in the Layout to render the active view.
       */}
-      <Outlet />
-    </div>
+      <Container>
+        <Outlet />
+      </Container>
+    </Box>
   );
 };

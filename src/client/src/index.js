@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+import { ThemeProvider, CssBaseline } from '@mui/material';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { theme } from 'theme';
 
 // https://reactrouter.com/docs/en/v6/getting-started/overview#configuring-routes
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -25,7 +33,15 @@ root.render(
         Nested routes have their paths concatenated to their parents
         to avoid repeating path sections.
         */}
-        <Route path="/" element={<App />}>
+        <Route
+          path="/"
+          element={
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <App />
+            </ThemeProvider>
+          }
+        >
           {/*
           Any view nested in the Layout route will be rendered as a child
           of the Layout component so all child views of the Layout are
@@ -35,8 +51,12 @@ root.render(
           <Route element={<Layout />}>
             {/* '/' with nothing after will render the index element */}
             <Route index element={<Home />} />
-            <Route path="destinations" element={<Destinations />} />
-            <Route path="destinations/new" element={<NewDestination />} />
+            <Route path="destinations">
+              {/* Concatenated path: /destinations */}
+              <Route path="" element={<Destinations />} />
+              {/* Concatenated path: /destinations/new */}
+              <Route path="new" element={<NewDestination />} />
+            </Route>
 
             {/* Display this component if route doesn't match any above. */}
             <Route path="*" element={<NotFound />} />
