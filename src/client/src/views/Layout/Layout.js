@@ -17,7 +17,7 @@ export const Layout = (_props) => {
 
       This let's us choose where in the Layout to render the active view.
       */}
-      <Container>
+      <Container sx={{ pt: 3 }}>
         <Outlet />
       </Container>
     </Box>
