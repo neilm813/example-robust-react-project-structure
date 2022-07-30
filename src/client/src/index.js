@@ -6,11 +6,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import { ThemeProvider, CssBaseline } from '@mui/material';
-
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { theme } from 'theme';
 
 // https://reactrouter.com/docs/en/v6/getting-started/overview#configuring-routes
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -31,18 +28,13 @@ root.render(
       <Routes>
         {/*
         Nested routes have their paths concatenated to their parents
-        to avoid repeating path sections.
+        to avoid repeating path sections. So every route nested inside
+        the below one will start with '/'
         */}
-        <Route
-          path="/"
-          element={
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <App />
-            </ThemeProvider>
-          }
-        >
+        <Route path="/" element={<App />}>
           {/*
+          The Layout will always be rendered since it has no path.
+
           Any view nested in the Layout route will be rendered as a child
           of the Layout component so all child views of the Layout are
           consistently laid out on the page based on where the Layout places
@@ -52,10 +44,11 @@ root.render(
             {/* '/' with nothing after will render the index element */}
             <Route index element={<Home />} />
             <Route path="destinations">
-              {/* Concatenated path: /destinations */}
-              <Route path="" element={<Destinations />} />
+              {/* when nothing is added after destination this index is used. */}
+              <Route index element={<Destinations />} />
               {/* Concatenated path: /destinations/new */}
               <Route path="new" element={<NewDestination />} />
+              <Route path=":id" element={<OneDestination />} />
             </Route>
 
             {/* Display this component if route doesn't match any above. */}
