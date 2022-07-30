@@ -1,4 +1,12 @@
-// For connecting to our own API.
+/* 
+An API service provides all the functions needed for the rest of the app
+to consistently access the API.
+
+No other component's need to import axios or know / care / refer to API urls
+which avoids repeatedly importing axios and duplicating urls and logic.
+
+Each API used could have it's own service file.
+*/
 
 import axios from 'axios';
 
@@ -10,10 +18,15 @@ const http = axios.create({
 The below typedef is so our front-end knows about what kind of data the API
 returns. Anywhere our front-end uses destination data will be because it got
 the data from the functions in this file, which come with the typedef to
-provide autocomplete.
+provide autocomplete on the keys and their data types.
 
 If you want to have clarity and autocomplete on your data you use, TypeScript
-is the more robust way to do that.
+is the more robust way to do that, because it's hard to keep the intellisense
+when we give these functions to a package to do the querying for us. With TS
+you can more easily pass your types around to other functions to know the
+types.
+
+Or you can import the JSDoc typedef to re-apply it when needed.
 */
 
 /**
