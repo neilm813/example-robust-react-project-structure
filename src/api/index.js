@@ -12,23 +12,24 @@ in variables in the code rather than in configuration files.
 
 SEE .env-notes.txt
 */
-require("dotenv").config();
-const express = require("express");
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
 
 const {
   errorHandlers: { errorHandler, errorLogger },
-} = require("./src/utils/errors");
+} = require('./src/utils/errors');
 
-const connectToDbCallback = require("./src/configs/mongoose-config");
+const connectToDbCallback = require('./src/configs/mongoose-config');
 connectToDbCallback(process.env.DB_NAME);
 
 const app = express();
-
+app.use(cors());
 // req.body will be undefined without this when receiving JSON.
 app.use(express.json());
 
-const { destinationRoutes } = require("./src/routes");
-app.use("/api/destinations", destinationRoutes);
+const { destinationRoutes } = require('./src/routes');
+app.use('/api/destinations', destinationRoutes);
 
 // Add error-handling middleware to run in the middle of the req res cycle.
 app.use(errorLogger);
