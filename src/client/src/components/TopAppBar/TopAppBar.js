@@ -11,7 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 const pages = [
   { text: 'Destinations', path: '/destinations' },
@@ -34,9 +34,17 @@ export const TopAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <TravelExploreIcon
+            fontSize="large"
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+              display: { xs: 'none', md: 'flex' },
+              mr: 1,
+            }}
+          />
           <Typography
             variant="h6"
+            color="secondary.dark"
             noWrap
             component="a"
             href="/"
@@ -46,11 +54,10 @@ export const TopAppBar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Trip Planner
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -83,7 +90,7 @@ export const TopAppBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.text} onClick={handleCloseNavMenu}>
+                <MenuItem key={page.path} onClick={handleCloseNavMenu}>
                   <Typography
                     onClick={() => navigate(page.path)}
                     textAlign="center"
@@ -94,9 +101,16 @@ export const TopAppBar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <TravelExploreIcon
+            sx={{
+              color: (theme) => theme.palette.primary.dark,
+              display: { xs: 'flex', md: 'none' },
+              mr: 1,
+            }}
+          />
           <Typography
             variant="h5"
+            color="secondary.dark"
             noWrap
             component="a"
             href=""
@@ -107,21 +121,24 @@ export const TopAppBar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Trip Planner
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.path}
                 onClick={() => {
                   handleCloseNavMenu();
                   navigate(page.path);
                 }}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{
+                  color: 'common.white',
+                  my: 2,
+                  display: 'block',
+                }}
               >
                 {page.text}
               </Button>
