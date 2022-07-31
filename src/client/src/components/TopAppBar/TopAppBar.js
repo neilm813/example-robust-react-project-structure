@@ -98,6 +98,7 @@ export const TopAppBar = (props) => {
                 <MenuItem key={page.path} onClick={handleCloseNavMenu}>
                   <Typography
                     onClick={() => navigate(page.path)}
+                    color="primary"
                     textAlign="center"
                   >
                     {page.text}
@@ -106,13 +107,6 @@ export const TopAppBar = (props) => {
               ))}
             </Menu>
           </Box>
-          <TravelExploreIcon
-            sx={{
-              color: (theme) => theme.palette.primary.dark,
-              display: { xs: 'flex', md: 'none' },
-              mr: 1,
-            }}
-          />
           <Typography
             variant="h5"
             color="secondary.dark"
@@ -135,12 +129,18 @@ export const TopAppBar = (props) => {
             {pages.map((page) => (
               <Button
                 key={page.path}
+                /* 
+                Let MUI style but render react-router-dom Link for it's
+                functionality. MUI will forward the `to` prop to the RouterLink
+                */
+                component={RouterLink}
+                to={page.path}
                 onClick={() => {
                   handleCloseNavMenu();
                   // navigate(page.path);
                 }}
                 sx={{
-                  color: 'common.white',
+                  color: 'primary',
                   my: 2,
                   display: 'block',
                 }}
