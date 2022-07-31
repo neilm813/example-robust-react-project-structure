@@ -1,24 +1,31 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Button,
+  MenuItem,
+} from '@mui/material';
+
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
+
+import logoMonumentsPlane from 'assets/images/logo-monuments-plane.png';
 
 const pages = [
   { text: 'Destinations', path: '/destinations' },
   { text: 'Create Destination', path: '/destinations/new' },
 ];
 
-export const TopAppBar = () => {
+export const TopAppBar = (props) => {
+  const { theme } = props;
+  console.log('app bar theme', theme);
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -34,13 +41,11 @@ export const TopAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <TravelExploreIcon
-            fontSize="large"
-            sx={{
-              color: (theme) => theme.palette.primary.dark,
-              display: { xs: 'none', md: 'flex' },
-              mr: 1,
-            }}
+          <Box
+            component="img"
+            src={logoMonumentsPlane}
+            alt={'logo'}
+            sx={{ width: (theme) => theme.spacing(20) }}
           />
           <Typography
             variant="h6"
@@ -132,7 +137,7 @@ export const TopAppBar = () => {
                 key={page.path}
                 onClick={() => {
                   handleCloseNavMenu();
-                  navigate(page.path);
+                  // navigate(page.path);
                 }}
                 sx={{
                   color: 'common.white',
