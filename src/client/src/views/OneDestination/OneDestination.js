@@ -11,7 +11,8 @@ import {
   Typography,
 } from '@mui/material';
 
-import { getOneDestination } from 'services';
+import { getOneDestination, testHttpStatus } from 'services';
+import { ShowError } from 'components';
 
 export const OneDestination = (_props) => {
   const { id } = useParams();
@@ -20,17 +21,18 @@ export const OneDestination = (_props) => {
     isLoading,
     isError,
     error,
-  } = useQuery(['one-destination'], () => getOneDestination(id));
-
-  if (error) {
-    return 'error';
-  }
+  } = useQuery(
+    ['one-destination'],
+    () => getOneDestination(id) /* testHttpStatus(500, 1000) */
+  );
 
   return (
     <Box
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      {isLoading && <CircularProgress />}
+      {isLoading && <CircularProgress size={'4rem'} />}
+      <ShowError error={error} />
+
       {destination && (
         <Card>
           <CardMedia
