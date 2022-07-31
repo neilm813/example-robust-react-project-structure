@@ -41,12 +41,14 @@ export const TopAppBar = (props) => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box
-            component="img"
-            src={logoMonumentsPlane}
-            alt={'logo'}
-            sx={{ width: (theme) => theme.spacing(20) }}
-          />
+          <RouterLink to="/">
+            <Box
+              component="img"
+              src={logoMonumentsPlane}
+              alt={'logo'}
+              sx={{ width: (theme) => theme.spacing(20) }}
+            />
+          </RouterLink>
           <Typography
             variant="h6"
             color="secondary.dark"
@@ -137,7 +139,6 @@ export const TopAppBar = (props) => {
                 to={page.path}
                 onClick={() => {
                   handleCloseNavMenu();
-                  // navigate(page.path);
                 }}
                 sx={{
                   color: 'primary',
