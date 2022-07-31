@@ -5,5 +5,5 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["fontsource", "roboto", "tanstack"]
+  "cSpell.words": ["appbar", "fontsource", "haspopup", "roboto", "tanstack"]
 }
