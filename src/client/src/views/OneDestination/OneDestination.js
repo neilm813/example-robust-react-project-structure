@@ -19,7 +19,6 @@ export const OneDestination = (_props) => {
   const {
     data: destination,
     isLoading,
-    isError,
     error,
   } = useQuery(
     ['one-destination'],
@@ -40,9 +39,14 @@ export const OneDestination = (_props) => {
             image={destination.src}
             alt={destination.location}
           />
-          <CardContent>
-            <Typography variant="h4">{destination.location}</Typography>
-            <Typography variant="body2">{destination.description}</Typography>
+          <CardContent sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ mr: 5 }}>
+              <Typography variant="h5">{destination.location}</Typography>
+              <Typography variant="body2">{destination.description}</Typography>
+            </Box>
+            <Box>
+              <Typography variant="h5">Seasons</Typography>
+            </Box>
           </CardContent>
         </Card>
       )}
