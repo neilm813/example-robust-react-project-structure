@@ -1,3 +1,3 @@
 module.exports = {
-  destinationService: require("./destination-service"),
+  ...require('./destinationService'),
 };

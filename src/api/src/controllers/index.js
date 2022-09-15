@@ -1,3 +1,3 @@
 module.exports = {
-  destinationController: require("./destination-controller"),
+  ...require('./destinationController'),
 };

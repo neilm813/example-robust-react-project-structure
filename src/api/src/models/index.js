@@ -1,3 +1,3 @@
 module.exports = {
-  Destination: require("./destination-model"),
+  ...require('./destinationModel'),
 };
