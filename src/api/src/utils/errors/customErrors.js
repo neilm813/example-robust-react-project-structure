@@ -4,7 +4,7 @@
  * A custom error that can be thrown as needed to be caught by middleware that
  * will set `res.status` based on the `statusCode`.
  */
-class APIError extends Error {
+export class APIError extends Error {
   constructor(message, statusCode = 500) {
     super(message);
     /** To be used with `res.status` */
@@ -18,7 +18,3 @@ class APIError extends Error {
     }
   }
 }
-
-module.exports = {
-  APIError,
-};

@@ -1,3 +1,1 @@
-module.exports = {
-  ...require('./destinationController'),
-};
+export * from './destinationController.js';

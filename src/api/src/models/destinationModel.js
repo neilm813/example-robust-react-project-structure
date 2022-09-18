@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 /*
 {PATH} will be replaced with the field name, such as "location".
@@ -49,13 +49,4 @@ const DestinationSchema = new mongoose.Schema(
   { timestamps: true } // adds createdAt and updatedAt.
 );
 
-/*
-Register schema with mongoose and provide a string to name the collection. This
-also returns a reference to our model that we can use for DB operations.
-*/
-const Destination = mongoose.model('Destination', DestinationSchema);
-
-// Even though this file only exports one thing right now, always exporting an
-// object is nice for consistency and makes it easy if you ever need to add
-// to the export.
-module.exports = { Destination };
+export const Destination = mongoose.model('Destination', DestinationSchema);

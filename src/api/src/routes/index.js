@@ -1,3 +1,1 @@
-module.exports = {
-  ...require('./destinationRoutes'),
-};
+export * from './destinationRoutes.js';

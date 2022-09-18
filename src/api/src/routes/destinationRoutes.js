@@ -1,23 +1,23 @@
-const express = require('express');
+import express from 'express';
 
-const {
+import {
   handleCreateDestination,
   handleCreateManyDestinations,
   handleGetAllDestinations,
   handleGetOneDestination,
   handleUpdateDestination,
   handleDeleteDestination,
-} = require('../controllers');
+} from '../controllers/index.js';
 
-const router = express.Router();
+const destinationRouter = express.Router();
 /*
 In main.js a prefix will be added: `/api/entities`
 */
-router.post('/', handleCreateDestination);
-router.post('/many', handleCreateManyDestinations);
-router.get('/', handleGetAllDestinations);
-router.get('/:id', handleGetOneDestination);
-router.put('/:id', handleUpdateDestination);
-router.delete('/:id', handleDeleteDestination);
+destinationRouter.post('/', handleCreateDestination);
+destinationRouter.post('/many', handleCreateManyDestinations);
+destinationRouter.get('/', handleGetAllDestinations);
+destinationRouter.get('/:id', handleGetOneDestination);
+destinationRouter.put('/:id', handleUpdateDestination);
+destinationRouter.delete('/:id', handleDeleteDestination);
 
-module.exports = { destinationRouter: router };
+export { destinationRouter };

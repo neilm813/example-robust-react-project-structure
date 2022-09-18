@@ -1,4 +1,2 @@
-module.exports = {
-  ...require('./error-handlers'),
-  ...require('./custom-errors'),
-};
+export * from './customErrors.js';
+export * from './errorHandlers.js';

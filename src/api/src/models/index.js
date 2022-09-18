@@ -1,3 +1,1 @@
-module.exports = {
-  ...require('./destinationModel'),
-};
+export * from './destinationModel.js';

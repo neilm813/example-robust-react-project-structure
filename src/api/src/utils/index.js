@@ -1,3 +1,1 @@
-module.exports = {
-  ...require('./errors'),
-};
+export * from './errors/index.js';
