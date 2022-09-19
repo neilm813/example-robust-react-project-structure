@@ -2,7 +2,7 @@
 
 This project serves as an example of how to structure a full-stack react project with an explanation of the choices made below.
 
-## Folder structure
+## Folder structure and conventions
 
 ### src folders
 
@@ -20,35 +20,13 @@ Index files have a few advantages:
 1. DRY: everything that can be imported from a folder is available in a single import statement since the `index.js` collects and exports everything
    - Depending on how the project is configured, you may not even need to explicitly refer to the `index.js` because it will be automatically searched for if only the folder name is used (such as in create-react-app)
 
-## Named vs default imports / exports
-
-Named imports and exports are used wherever possible instead of defaults to provide consistency.
-
-Many popular packages use default imports, so they are fine to use. However, it can be a bit confusing when there are multiple ways to import the same code and when the chosen name for the import can be anything.
-
-You can only have one default export per file, and when importing it, you can choose any name for it which can make it harder to search the codebase to find all the places that particular code is imported.
-
-Named imports must specify the exact name of the export and you can have as many named exports as needed. You can still rename a named import, but only after explicitly referencing the name.
-
-### ES6 modules enabled
-
-Our back-end doesn't already come with webpack and babel configured like create-react-app does, so those would need to be setup in order to use `import` and `export` in the back-end in the same way they are used in the front-end.
-
-However, a simpler alternative is to add `"type": "module"` to [src/api/package.json](./src/api/package.json). With this added, we can use `import` and `export` with the below caveats:
-
-- `require` is no longer available
-- must add `.js` in `from './fileName.js'`
-- must specify `from 'folder/index.js` instead of it automatically finding the folder's `index.js`
-- must load `dotenv` differently so the env vars are available before other modules are loaded (see [./src/api/src/main.js](./src/api/src/main.js))
-- must use `assert` to import JSON files: `import json from './foo.json' assert { type: 'json' };`
-
-## utils
+### utils folder
 
 `utils` is just a folder name convention to follow separation of concerns and decouple logic to make code more reusable, usually in the form of small helper functions and classes.
 
 In react, [utils](./src/client/src/utils/) is code that isn't a component or a hook, but multiple components may need to utilize it.
 
-## services
+### services folder
 
 `services` is another folder name convention to follow separation of concerns and decouple logic to make code more reusable. Services are usually more specifically focused around decoupling API and database logic.
 
@@ -60,9 +38,31 @@ The below images diagram what adding a service layer to the back-end MVC looks l
 ![mvc with no service](./notes/assets/images/mvc/mvc-diagram.png)
 ![mvc with service](./notes/assets/images/mvc/mvc-with-service-diagram.png)
 
-## assets
+### assets folder
 
-The `assets` folder is for storing static assets, such as images.
+The [assets](./src/client/src/assets/) folder is for storing static assets, such as images.
+
+## ES6 modules
+
+Our back-end doesn't already come with webpack and babel configured like create-react-app does, so those would need to be setup in order to use `import` and `export` in the back-end in the same way they are used in the front-end.
+
+However, a simpler alternative is to add `"type": "module"` to [src/api/package.json](./src/api/package.json). With this added, we can use `import` and `export` with the below caveats:
+
+- `require` is no longer available
+- must add `.js` in `from './fileName.js'`
+- must specify `from 'folder/index.js` instead of it automatically finding the folder's `index.js`
+- must load `dotenv` differently so the env vars are available before other modules are loaded (see [./src/api/src/main.js](./src/api/src/main.js))
+- must use `assert` to import JSON files: `import json from './foo.json' assert { type: 'json' };`
+
+## Named vs default imports / exports
+
+Named imports and exports are used wherever possible instead of defaults to provide consistency.
+
+Many popular packages use default imports, so they are fine to use. However, it can be a bit confusing when there are multiple ways to import the same code and when the chosen name for the import can be anything.
+
+You can only have one default export per file, and when importing it, you can choose any name for it which can make it harder to search the codebase to find all the places that particular code is imported.
+
+Named imports must specify the exact name of the export and you can have as many named exports as needed. You can still rename a named import, but only after explicitly referencing the name.
 
 ## Config files
 
@@ -71,3 +71,21 @@ The `assets` folder is for storing static assets, such as images.
 The [.nvmrc](./.nvmrc) file is used for people who use Node Version Manager (nvm) which you should use to make it easier to switch versions of node between projects. This file helps the `nvm use` command, when ran from the project's root folder, suggest the node version to use.
 
 Additionally, the `"engines"` key can be used in `package.json` and a [.npmrc](./.npmrc) file can be used.
+
+### .env files
+
+The `.env` files are ignored via the project's [.gitignore](./.gitignore) so it applies to both the `client` and `api` projects.
+
+`.env` files are for storing environment variables that may need to change between devs and environments (dev / prod). Some devs may have different test db names they need to use, and that may be different than the db name in prod for example.
+
+[client env example](./src/client/.env.example) and [api env example](./src/api/.env.example) are files to guide collaborators on how to create their own `.env` file for these projects since the actual `.env` file is ignored.
+
+### editorconfig
+
+This file [.editorconfig](./.editorconfig) helps synchronize collaborator's editor settings for consistency.
+
+### .vscode folder
+
+This file contains project-specific VSCode settings that to share between collaborators, such as [settings.json](./.vscode/settings.json) for known words that spell-checkers can ignore and some other recommended settings.
+
+The [extensions.json](./.vscode/extensions.json) lists out all the extensions that are recommended for the project, for example, if you write some special comment syntax so an extension colors the comments, you would include the name of that extension here. You can right click an extension to copy it's name-id.
