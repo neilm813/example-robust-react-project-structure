@@ -68,6 +68,6 @@ The `assets` folder is for storing static assets, such as images.
 
 ### Node version
 
-The [.nvmrc](./.nvmrc) is used with Node Version Manager (nvm) which you should use to make it easier to switch versions of node between projects. This file helps the `nvm use` command, when ran from the project's root folder, suggest the node version to use.
+The [.nvmrc](./.nvmrc) file is used for people who use Node Version Manager (nvm) which you should use to make it easier to switch versions of node between projects. This file helps the `nvm use` command, when ran from the project's root folder, suggest the node version to use.
 
 Additionally, the `"engines"` key can be used in `package.json` and a [.npmrc](./.npmrc) file can be used.
