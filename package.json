@@ -8,5 +8,8 @@
   "scripts": {
     "prepare": "husky install"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  }
 }
