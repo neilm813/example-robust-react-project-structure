@@ -1,4 +1,4 @@
-/* 
+/*
 An API service provides all the functions needed for the rest of the app
 to consistently access the API.
 
@@ -14,19 +14,12 @@ const http = axios.create({
   baseURL: process.env.REACT_APP_BASE_INTERNAL_API_URL,
 });
 
-/* 
-The below typedef is so our front-end knows about what kind of data the API
-returns. Anywhere our front-end uses destination data will be because it got
-the data from the functions in this file, which come with the typedef to
-provide autocomplete on the keys and their data types.
+/*
+The below typedef makes it so every component that uses functions from this
+file will get autocomplete for the props and data returned by these functions.
 
-If you want to have clarity and autocomplete on your data you use, TypeScript
-is the more robust way to do that, because it's hard to keep the intellisense
-when we give these functions to a package to do the querying for us. With TS
-you can more easily pass your types around to other functions to know the
-types.
-
-Or you can import the JSDoc typedef to re-apply it when needed.
+If you find yourself wanting to do this thoroughly, you should start using
+TypeScript.
 */
 
 /**

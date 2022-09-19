@@ -1,7 +1,7 @@
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, Typography } from '@mui/material';
 
 export const ShowError = (props) => {
-  const { error } = props;
+  const { actions = null, additionalContent = [], error } = props;
 
   if (!error) {
     return null;
@@ -29,7 +29,10 @@ export const ShowError = (props) => {
     >
       <CardContent>
         <Typography color="error.main">{message}</Typography>
+        {additionalContent}
       </CardContent>
+      {/* Buttons & links, like try again can be passed in. */}
+      {actions && <CardActions>{actions}</CardActions>}
     </Card>
   );
 };

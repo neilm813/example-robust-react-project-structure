@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
   Box,
@@ -6,12 +6,10 @@ import {
   CardContent,
   CardMedia,
   CircularProgress,
-  Fade,
-  Paper,
   Typography,
 } from '@mui/material';
 
-import { getOneDestination, testHttpStatus } from 'services';
+import { getOneDestination } from 'services';
 import { ShowError } from 'components';
 
 export const OneDestination = (_props) => {
@@ -20,10 +18,7 @@ export const OneDestination = (_props) => {
     data: destination,
     isLoading,
     error,
-  } = useQuery(
-    ['one-destination'],
-    () => getOneDestination(id) /* testHttpStatus(500, 1000) */
-  );
+  } = useQuery(['one-destination'], () => getOneDestination(id));
 
   return (
     <Box
