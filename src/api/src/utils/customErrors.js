@@ -1,10 +1,10 @@
-// See destination-controller createMany for example usage of APIError
+// See destination-controller createMany for example usage of ApiError
 
 /**
  * A custom error that can be thrown as needed to be caught by middleware that
  * will set `res.status` based on the `statusCode`.
  */
-export class APIError extends Error {
+export class ApiError extends Error {
   constructor(message, statusCode = 500) {
     super(message);
     /** To be used with `res.status` */
@@ -14,7 +14,7 @@ export class APIError extends Error {
     this.name = this.constructor.name;
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, APIError);
+      Error.captureStackTrace(this, ApiError);
     }
   }
 }

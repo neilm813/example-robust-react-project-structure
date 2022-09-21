@@ -1,5 +1,10 @@
 import { request, response } from 'express';
 
+/*
+These error util functions are added as middleware in `api/main.js` via
+`app.use`.
+*/
+
 /**
  * @see https://expressjs.com/en/guide/error-handling.html
  * @param {object | Error} error

@@ -13,7 +13,7 @@ import {
   createManyDestinations,
 } from '../services/index.js';
 
-import { APIError } from '../utils/index.js';
+import { ApiError } from '../utils/index.js';
 
 export const handleCreateDestination = async (req, res, next) => {
   try {
@@ -68,7 +68,7 @@ export const handleUpdateDestination = async (req, res, next) => {
 export const handleCreateManyDestinations = async (req, res, next) => {
   try {
     if (Array.isArray(req.body) === false) {
-      throw new APIError('Request body must be an array.', 400);
+      throw new ApiError('Request body must be an array.', 400);
     }
     const settledCreateOutcomes = await createManyDestinations(req.body);
     return res.json(settledCreateOutcomes);

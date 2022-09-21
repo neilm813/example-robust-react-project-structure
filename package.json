@@ -6,10 +6,12 @@
     "pretty-quick": "^3.1.3"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start:api": "npm run --prefix ./src/api start",
+    "start:client": "npm run --prefix ./src/client start"
   },
   "type": "module",
   "engines": {
-    "node": ">=18"
+    "node": ">=18.7.0"
   }
 }
