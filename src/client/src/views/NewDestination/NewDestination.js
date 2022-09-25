@@ -1,3 +1,1 @@
-export const NewDestination = (_props) => {
-  return "NewDestination View";
-};
+export const NewDestination = (_props) => 'NewDestination View';

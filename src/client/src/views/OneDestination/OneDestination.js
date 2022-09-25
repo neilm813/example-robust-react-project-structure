@@ -9,8 +9,8 @@ import {
   Typography,
 } from '@mui/material';
 
-import { getOneDestination } from 'services';
-import { ShowError } from 'components';
+import { getOneDestination } from '../../services';
+import { ShowError } from '../../components';
 
 export const OneDestination = (_props) => {
   const { id } = useParams();
@@ -24,7 +24,7 @@ export const OneDestination = (_props) => {
     <Box
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      {isLoading && <CircularProgress size={'4rem'} />}
+      {isLoading && <CircularProgress size="4rem" />}
       <ShowError error={error} />
 
       {destination && (

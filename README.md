@@ -2,6 +2,10 @@
 
 This project serves as an example of how to structure a full-stack react project with an explanation of the choices made below.
 
+## TypeScript Note
+
+As you start building larger projects, TypeScript (TS) becomes more necessary to keep the bugs at bay and have a good developer experience (DX). This example doesn't use TS because it is meant to be more of a stepping stone example.
+
 ## Folder structure and conventions
 
 ### src folders

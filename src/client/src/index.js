@@ -5,13 +5,11 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
 // https://reactrouter.com/docs/en/v6/getting-started/overview#configuring-routes
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import reportWebVitals from './reportWebVitals';
+import { App } from './App';
 import {
   Destinations,
   Layout,
@@ -19,7 +17,7 @@ import {
   NotFound,
   OneDestination,
   NewDestination,
-} from 'views';
+} from './views';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,7 +25,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         {/*
-        Nested routes have their paths concatenated to their parents
+        Nested routes have their paths concatenated to their parent's
         to avoid repeating path sections. So every route nested inside
         the below one will start with '/'
         */}

@@ -1,3 +1,1 @@
-export const NotFound = (_props) => {
-  return "NotFound View";
-};
+export const NotFound = (_props) => 'NotFound View';

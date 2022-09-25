@@ -1,3 +1,1 @@
-export const Destinations = (_props) => {
-  return "Destinations View";
-};
+export const Destinations = (_props) => 'Destinations View';

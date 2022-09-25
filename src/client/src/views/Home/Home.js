@@ -1,5 +1,3 @@
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 
-export const Home = (_props) => {
-  return <Box>HOME PAGE</Box>;
-};
+export const Home = (_props) => <Box>HOME PAGE</Box>;

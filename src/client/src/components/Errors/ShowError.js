@@ -8,13 +8,14 @@ export const ShowError = (props) => {
   }
 
   const { code, message } = error;
+  let displayMessage = message;
 
   const errorCodeMessages = {
     ETIMEDOUT: 'The server took too long to respond.',
   };
 
   if (code in errorCodeMessages) {
-    message = errorCodeMessages[code];
+    displayMessage = errorCodeMessages[code];
   }
 
   return (
@@ -28,7 +29,7 @@ export const ShowError = (props) => {
       }}
     >
       <CardContent>
-        <Typography color="error.main">{message}</Typography>
+        <Typography color="error.main">{displayMessage}</Typography>
         {additionalContent}
       </CardContent>
       {/* Buttons & links, like try again can be passed in. */}

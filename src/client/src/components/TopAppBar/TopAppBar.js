@@ -14,9 +14,9 @@ import {
 } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
-import TravelExploreIcon from '@mui/icons-material/TravelExplore';
+// import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
-import logoMonumentsPlane from 'assets/images/logo-monuments-plane.png';
+import logoMonumentsPlane from '../../assets/images/logo-monuments-plane.png';
 
 const pages = [
   { text: 'Destinations', path: '/destinations' },
@@ -24,8 +24,6 @@ const pages = [
 ];
 
 export const TopAppBar = (props) => {
-  const { theme } = props;
-  console.log('app bar theme', theme);
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -45,7 +43,7 @@ export const TopAppBar = (props) => {
             <Box
               component="img"
               src={logoMonumentsPlane}
-              alt={'logo'}
+              alt="logo"
               sx={{ width: (theme) => theme.spacing(20) }}
             />
           </RouterLink>
@@ -131,7 +129,7 @@ export const TopAppBar = (props) => {
             {pages.map((page) => (
               <Button
                 key={page.path}
-                /* 
+                /*
                 Let MUI style but render react-router-dom Link for it's
                 functionality. MUI will forward the `to` prop to the RouterLink
                 */
