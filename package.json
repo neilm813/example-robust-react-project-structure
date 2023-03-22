@@ -16,8 +16,8 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "start:api": "npm run --prefix ./src/api start",
-    "start:client": "npm run --prefix ./src/client start"
+    "start:api": "npm run --prefix ./apps/api start",
+    "start:client": "npm run --prefix ./apps/client start"
   },
   "engines": {
     "node": ">=18.7.0"
