@@ -2,6 +2,8 @@
 
 This project serves as an example of how to structure a full-stack react project with an explanation of the choices made below.
 
+[See initial project creation steps here](./notes/project-setup.md) and then read the rest of this to understand the rationale behind the rest of the project structure and choices.
+
 ## TypeScript Note
 
 As you start building larger projects, TypeScript (TS) becomes more necessary to keep the bugs at bay and have a good developer experience (DX). This example doesn't use TS because it is meant to be more of a stepping stone example.
@@ -92,6 +94,8 @@ Named imports must specify the exact name of the export and you can have as many
 
 React query is one of the most popular packages for handling api calls in react because it helps with a lot of the pain points of doing so, such as caching the data so you don't have to worry about a separate components performing the same fetch that was already done.
 
+A small example of react-query in the code is [here](./src/client/src/views/OneDestination/OneDestination.js)
+
 ### [react-hook-form](https://react-hook-form.com/)
 
 React-hook-form is gaining popularity for making improvements when compared to the other most popular react form libraries.
@@ -122,7 +126,7 @@ You should use Node Version Manager (nvm) because it makes it very easy to switc
 
 The `.env` files are ignored via the project's [.gitignore](./.gitignore) so it applies to both the `client` and `api` projects.
 
-`.env` files are for storing environment variables that may need to change between devs and environments (dev / prod). Some devs may have different test db names they need to use, and that may be different than the db name in prod for example.
+`.env` files are for storing environment variables that may need to change between developers and environments (dev / prod). Some developers may have different test db names they need to use, and that may be different than the db name in prod for example.
 
 [client env example](./src/client/.env.example) and [api env example](./src/api/.env.example) are files to guide collaborators on how to create their own `.env` file for these projects since the actual `.env` file is ignored.
 

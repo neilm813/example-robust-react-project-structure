@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { request, response } from 'express';
 
 /*
@@ -18,6 +19,7 @@ export const errorLogger = (error, _req, _res, next) => {
 };
 
 /**
+ * TODO: Add error normalization.
  * Catch-all error handler. Any error handling that needs to happen for
  * all errors can happen here.
  * @see [Section: 'The default error handler'](https://expressjs.com/en/guide/error-handling.html)
@@ -40,5 +42,5 @@ export const errorHandler = (error, _req, res, next) => {
   }
 
   // You can throw a custom error object with a statusCode on it to be handled.
-  return res.status(errorData.statusCode || 500).json(errorData);
+  return res.status(errorData?.statusCode || 500).json(errorData);
 };

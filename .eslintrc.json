@@ -13,14 +13,16 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    // File extensions are required in on import statements in the back-end if import syntax is enabled via
-    // package.json "type": "module". This rule can be removed if import syntax is not used in the back-end.
+    // File extensions are required on import statements in the back-end if import syntax is enabled via package.json
+    // "type": "module". This rule can be removed if import syntax is not used in the back-end.
     "import/extensions": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "import/prefer-default-export": "off",
     "no-unused-vars": [
       "warn",
       {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
         "vars": "all",
         "args": "after-used",
         "ignoreRestSiblings": false
@@ -34,6 +36,22 @@
       },
       {
         "enforceForRenamedProperties": false
+      }
+    ],
+    "react/prop-types": ["off"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": ["off"],
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
       }
     ]
   }
