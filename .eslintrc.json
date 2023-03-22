@@ -5,12 +5,7 @@
     "es2021": true,
     "node": true
   },
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "airbnb",
-    "prettier"
-  ],
+  "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "airbnb", "prettier"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -18,6 +13,9 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    // File extensions are required in on import statements in the back-end if import syntax is enabled via
+    // package.json "type": "module". This rule can be removed if import syntax is not used in the back-end.
+    "import/extensions": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "import/prefer-default-export": "off",
     "no-unused-vars": [
