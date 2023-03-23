@@ -28,11 +28,11 @@ Index files have a few advantages:
 
 ### views folder
 
-The [views](./src/client/src/views) folder is for any component that has a route / path associated to it, these components represent a view (page) and usually build the page by using other non-view components.
+The [views](./apps/client/src/views) folder is for any component that has a route / path associated to it, these components represent a view (page) and usually build the page by using other non-view components.
 
 ### components folder
 
-The [components](./src/client/src/components) folder is for components that do not have a route / path associated to them, these components do not represent a full view (page).
+The [components](./apps/client/src/components) folder is for components that do not have a route / path associated to them, these components do not represent a full view (page).
 
 Each component itself is a folder so files related to the component can be grouped with the component, such as css module files, or smaller components that may only be used in a single larger component.
 
@@ -40,17 +40,17 @@ Each component itself is a folder so files related to the component can be group
 
 `utils` is just a folder name convention to follow separation of concerns and decouple logic to make code more reusable, usually in the form of small helper functions and classes.
 
-In react, [utils](./src/client/src/utils) is code that isn't a component or a hook, but multiple components may need to utilize it.
+In react, [utils](./apps/client/src/utils) is code that isn't a component or a hook, or service (to make api calls usually) but may be needed in multiple places.
 
-In the server, [utils](./src/api/src/utils) is basically any reusable code that isn't part of a more specific folder convention such as models, controllers, services, and middleware.
+In the server, [utils](./apps/api/src/utils) is basically any reusable code that isn't part of a more specific folder convention such as models, controllers, services, and middleware.
 
 ### services folder
 
-`services` is another folder name convention to follow separation of concerns and decouple logic to make code more reusable. Services are usually more specifically focused around decoupling API and database request logic whereas the utilities folder is for other reusable code.
+`services` is another folder name convention typically seen for reusable functions that make api calls / db calls to decouple this logic from other logic such as component logic or controller request handler logic.
 
-In our react front-end, [internalApiService](./src/client/src/services/internalApiService.js) contains all the logic for calling our api that can be reused in any component that needs to make an api call to our own back-end.
+In our react front-end, [internalApiService](./apps/client/src/services/internalApiService.js) contains all the logic for calling our api that can be reused in any component that needs to make an api call to our own back-end.
 
-Our backend [services](./src/api/src/services) contains all the database logic so it can be easily reused in multiple controller handlers / routes if needed. Another service file could be added if our server needs to make calls to some 3rd party api.
+Our backend [services](./apps/api/src/services) contains all the database logic so it can be easily reused in multiple controller handlers / routes if needed. If our back-end makes calls to another api, another service file could be made to hold functions for those api calls.
 
 The below images diagram what adding a service layer to the back-end MVC looks like:
 ![mvc with no service](./notes/assets/images/mvc/mvc-diagram.png)
@@ -58,22 +58,22 @@ The below images diagram what adding a service layer to the back-end MVC looks l
 
 ### assets folder
 
-The [assets](./src/client/src/assets) folder is for storing static assets, such as images.
+The [assets](./apps/client/src/assets) folder is for storing static assets, such as images.
 
 ### hooks folder
 
-The [hooks](./src/client/src/hooks) folder is for saving custom hooks that are used by multiple components. Sometimes, it helps for organization to create a hook that is only used by a single component, in this case the hook can be placed in the component's folder itself.
+The [hooks](./apps/client/src/hooks) folder is for saving custom hooks that are used by multiple components. Sometimes, it helps for organization to create a hook that is only used by a single component, in this case the hook can be placed in the component's folder itself.
 
 ## ES6 modules
 
 Our back-end doesn't already come with webpack and babel configured like create-react-app does, so those would need to be setup in order to use `import` and `export` in the back-end in the same way they are used in the front-end.
 
-However, a simpler alternative is to add `"type": "module"` to [src/api/package.json](./src/api/package.json). With this added, we can use `import` and `export` with the below caveats:
+However, a simpler alternative is to add `"type": "module"` to [apps/api/package.json](./apps/api/package.json). With this added, we can use `import` and `export` with the below caveats:
 
 - `require` is no longer available
 - must add `.js` in `from './fileName.js'`
 - must specify `from 'folder/index.js` instead of it automatically finding the folder's `index.js`
-- must load `dotenv` differently so the env vars are available before other modules are loaded (see [./src/api/src/main.js](./src/api/src/main.js))
+- must load `dotenv` differently so the env vars are available before other modules are loaded (see [./apps/api/src/main.js](./apps/api/src/main.js))
 - must use `assert` to import JSON files: `import json from './foo.json' assert { type: 'json' };`
 
 ## Named vs default imports / exports
@@ -94,7 +94,7 @@ Named imports must specify the exact name of the export and you can have as many
 
 React query is one of the most popular packages for handling api calls in react because it helps with a lot of the pain points of doing so, such as caching the data so you don't have to worry about a separate components performing the same fetch that was already done.
 
-A small example of react-query in the code is [here](./src/client/src/views/OneDestination/OneDestination.js)
+A small example of react-query in the code is [here](./apps/client/src/views/OneDestination/OneDestination.js)
 
 ### [react-hook-form](https://react-hook-form.com/)
 
@@ -128,7 +128,7 @@ The `.env` files are ignored via the project's [.gitignore](./.gitignore) so it 
 
 `.env` files are for storing environment variables that may need to change between developers and environments (dev / prod). Some developers may have different test db names they need to use, and that may be different than the db name in prod for example.
 
-[client env example](./src/client/.env.example) and [api env example](./src/api/.env.example) are files to guide collaborators on how to create their own `.env` file for these projects since the actual `.env` file is ignored.
+[client env example](./apps/client/.env.example) and [api env example](./apps/api/.env.example) are files to guide collaborators on how to create their own `.env` file for these projects since the actual `.env` file is ignored.
 
 ### editorconfig
 
@@ -152,4 +152,4 @@ The [extensions.json](./.vscode/extensions.json) lists out all the extensions th
 1. cd back to the root of the project
 1. `npm run start:api` in one terminal
 1. `npm run start:client` in another terminal
-   - see the project root's [package.json](./package.json) `scripts` section. The `start:api` script simply runs the `start` script that is in the [api package.json](./src/api/package.json) `scripts` section and the same for `start:client` so that you don't have to cd into both if you just want to start them.
+   - see the project root's [package.json](./package.json) `scripts` section. The `start:api` script simply runs the `start` script that is in the [api package.json](./apps/api/package.json) `scripts` section and the same for `start:client` so that you don't have to cd into both if you just want to start them.
