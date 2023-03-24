@@ -35,6 +35,9 @@ export const errorHandler = (error, _req, res, next) => {
     return next(error);
   }
 
+  // For common errors that can be handled at a high-level. For errors that need to be handled more specifically with
+  // local information (info closer to where the error happens), those should be handled locally instead of passed to
+  // `next()` and then end up here.
   const normalizedError = normalizeErrors(error);
   return res.status(normalizedError?.statusCode || 500).json(normalizedError);
 };
