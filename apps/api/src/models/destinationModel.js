@@ -1,27 +1,24 @@
 import mongoose from 'mongoose';
 
-/*
-{PATH} will be replaced with the field name, such as "location".
-*/
 const DestinationSchema = new mongoose.Schema(
   {
     location: {
       type: String,
-      required: [true, '{PATH} is required.'],
-      minlength: [2, '{PATH} must be at least {MINLENGTH} characters.'],
+      required: [true, 'is required.'],
+      minlength: [2, 'must be at least {MINLENGTH} characters.'],
     },
     description: {
       type: String,
-      required: [true, '{PATH} is required.'],
-      minlength: [5, '{PATH} must be at least {MINLENGTH} characters.'],
+      required: [true, 'is required.'],
+      minlength: [5, 'must be at least {MINLENGTH} characters.'],
     },
     src: {
       type: String,
-      required: [true, '{PATH} is required.'],
+      required: [true, 'is required.'],
     },
     srcType: {
       type: String,
-      required: [true, '{PATH} is required.'],
+      required: [true, 'is required.'],
     },
     // Checkboxes for the season's you'd like to travel to this destination.
     summer: {

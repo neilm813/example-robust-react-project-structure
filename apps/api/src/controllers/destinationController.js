@@ -68,7 +68,7 @@ export const handleUpdateDestination = async (req, res, next) => {
 export const handleCreateManyDestinations = async (req, res, next) => {
   try {
     if (Array.isArray(req.body) === false) {
-      throw new ApiError('Request body must be an array.', 400);
+      throw new ApiError({ message: 'Request body must be an array.', statusCode: 400 });
     }
     const settledCreateOutcomes = await createManyDestinations(req.body);
     return res.json(settledCreateOutcomes);
