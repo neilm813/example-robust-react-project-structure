@@ -194,6 +194,7 @@ ESLint does also have formatting capabilities and can have some rules that confl
        },
        "plugins": ["react", "prettier"],
        "rules": {
+         "max-classes-per-file": "off",
          // File extensions are required on import statements in the back-end if import syntax is enabled via package.json
          // "type": "module". This rule can be removed if import syntax is not used in the back-end.
          "import/extensions": "off",
