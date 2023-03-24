@@ -13,6 +13,9 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    // You shouldn't console log to the browser things that users shouldn't see. Remove this to be reminded to remove
+    // your logs so they don't end up in production.
+    "eslint no-console": "off",
     "max-classes-per-file": "off",
     // File extensions are required on import statements in the back-end if import syntax is enabled via package.json
     // "type": "module". This rule can be removed if import syntax is not used in the back-end.
