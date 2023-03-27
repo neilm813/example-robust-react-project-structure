@@ -1,6 +1,6 @@
-export { Home } from './Home';
-export { Destinations } from './Destinations';
-export { Layout } from './Layout';
-export { NotFound } from './NotFound';
-export { NewDestination } from './NewDestination';
-export { OneDestination } from './OneDestination';
+export { HomeView } from './HomeView';
+export { DestinationsView } from './DestinationsView';
+export { LayoutView } from './LayoutView';
+export { NotFoundView } from './NotFoundView';
+export { NewDestinationView } from './NewDestinationView';
+export { OneDestinationView } from './OneDestinationView';

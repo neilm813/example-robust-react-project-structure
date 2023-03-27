@@ -5,7 +5,7 @@ import { Box, Card, CardContent, CardMedia, CircularProgress, Typography } from 
 import { getOneDestination } from '../../services';
 import { ShowError } from '../../components';
 
-export const OneDestination = (_props) => {
+export const OneDestinationView = (_props) => {
   const { id } = useParams();
   const { data: destination, isLoading, error } = useQuery(['one-destination'], () => getOneDestination(id));
 

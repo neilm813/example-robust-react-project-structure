@@ -6,7 +6,7 @@ import { TopAppBar } from '../../components';
 /**
  * A common layout and style to be consistently applied to the all child views.
  */
-export const Layout = (_props) => (
+export const LayoutView = (_props) => (
   <Box>
     <TopAppBar />
     {/*

@@ -1,0 +1,1 @@
+export { DestinationsView } from './DestinationsView';

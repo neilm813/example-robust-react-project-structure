@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import reportWebVitals from './reportWebVitals';
 import { App } from './App';
-import { Destinations, Layout, Home, NotFound, OneDestination, NewDestination } from './views';
+import { DestinationsView, LayoutView, HomeView, NotFoundView, OneDestinationView, NewDestinationView } from './views';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,19 +31,19 @@ root.render(
           consistently laid out on the page based on where the Layout places
           the <Outlet />.
           */}
-          <Route element={<Layout />}>
+          <Route element={<LayoutView />}>
             {/* '/' with nothing after will render the index element */}
-            <Route index element={<Home />} />
+            <Route index element={<HomeView />} />
             <Route path="destinations">
               {/* when nothing is added after destination this index is used. */}
-              <Route index element={<Destinations />} />
+              <Route index element={<DestinationsView />} />
               {/* Concatenated path: /destinations/new */}
-              <Route path="new" element={<NewDestination />} />
-              <Route path=":id" element={<OneDestination />} />
+              <Route path="new" element={<NewDestinationView />} />
+              <Route path=":id" element={<OneDestinationView />} />
             </Route>
 
             {/* Display this component if route doesn't match any above. */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFoundView />} />
             {/* Redirect if route doesn't match any above. */}
             {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Route>
