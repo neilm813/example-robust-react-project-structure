@@ -174,73 +174,113 @@ ESLint does also have formatting capabilities and can have some rules that confl
   }
   ```
 
-1. `npm i prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-react-hooks -D`
+1. `npm i prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-react-hooks eslint-plugin-import -D`
    - Install ESLint-prettier compatibility packages.
-1. Replace everything in `.eslintrc` with the below code which mostly adds to `extends`, `plugins`, and adds some `rules`:
+1. Replace everything in `.eslintrc` with the below code which mostly adds to `extends` and adds some `rules`:
 
-   - ```json
-     {
-       "root": true,
-       "env": {
-         "browser": true,
-         "es2021": true,
-         "node": true
-       },
-       "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "airbnb", "prettier"],
-       "overrides": [],
-       "parserOptions": {
-         "ecmaVersion": "latest",
-         "sourceType": "module"
-       },
-       "rules": {
-         // You shouldn't console log to the browser things that users shouldn't see. Remove this to be reminded to remove
-         // your logs so they don't end up in production.
-         "eslint no-console": "off",
-         "max-classes-per-file": "off",
-         // File extensions are required on import statements in the back-end if import syntax is enabled via package.json
-         // "type": "module". This rule can be removed if import syntax is not used in the back-end.
-         "import/extensions": "off",
-         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-         "import/prefer-default-export": "off",
-         "no-unused-vars": [
-           "warn",
-           {
-             "argsIgnorePattern": "^_",
-             "varsIgnorePattern": "^_",
-             "vars": "all",
-             "args": "after-used",
-             "ignoreRestSiblings": false
-           }
-         ],
-         "prefer-destructuring": [
-           "warn",
-           {
-             "array": true,
-             "object": true
-           },
-           {
-             "enforceForRenamedProperties": false
-           }
-         ],
-         "react/prop-types": ["off"],
-         "react/react-in-jsx-scope": "off",
-         "react/jsx-props-no-spreading": ["off"],
-         "react/jsx-filename-extension": [
-           "warn",
-           {
-             "extensions": [".js", ".jsx"]
-           }
-         ],
-         "react/function-component-definition": [
-           "error",
-           {
-             "namedComponents": "arrow-function",
-             "unnamedComponents": "arrow-function"
-           }
-         ]
-       }
-     }
-     ```
+```json
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "airbnb", "prettier"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    // You shouldn't console log to the browser things that users shouldn't see. Remove this to be reminded to remove
+    // your logs so they don't end up in production.
+    "no-console": "off",
+    "max-classes-per-file": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ],
+    "prefer-destructuring": [
+      "warn",
+      {
+        "array": true,
+        "object": true
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "import/prefer-default-export": "off",
+
+    // File extensions are required on import statements in the back-end if import syntax is enabled via package.json
+    // "type": "module". This rule can be removed if import syntax is not used in the back-end.
+    "import/extensions": "off",
+    "sort-imports": [
+      "warn",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "import/order": [
+      "warn",
+      {
+        "groups": ["external", "builtin", "internal", "sibling", "parent", "index"],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "components",
+            "group": "internal"
+          },
+          {
+            "pattern": "common",
+            "group": "internal"
+          },
+          {
+            "pattern": "routes/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "assets/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["internal"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+
+    "react/prop-types": ["off"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": ["off"],
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
+  }
+}
+```
 
 ### Test ESLint
 
