@@ -1,13 +1,11 @@
 import mongoose from 'mongoose';
 
-const connectionString = process.env.DB_CONNECTION;
+const uri = process.env.MONGODB_URI;
 
 mongoose
-  .connect(connectionString, {
+  .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => {
-    console.log(`Successfully connected to ${connectionString}`);
-  })
-  .catch((error) => console.log(`mongoose connection to ${connectionString} failed:`, error));
+  .then(() => console.log('Database connected.'))
+  .catch((err) => console.log('Database connection error:', err));
