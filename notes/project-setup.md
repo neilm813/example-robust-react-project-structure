@@ -75,8 +75,8 @@ These are steps to setup a project with this structure and configure prettier wi
 1. Open the `package.json` in the top-level project folder and add the following to the `scripts` object:
 
    - ```txt
-      "start:api": "npm run --prefix ./apps/api start",
-      "start:client": "npm run --prefix ./apps/client start",
+      "api:start": "npm run --prefix ./apps/api start",
+      "client:start": "npm run --prefix ./apps/client start"
      ```
 
    - This will allow you to start both projects (in two terminals or terminal tabs) from the top-level project folder without having to `cd` into each project. For example, from the top-level project folder test start the api with: `npm run start:api` and see if the previously added `console.log` prints.
@@ -192,8 +192,10 @@ ESLint does also have formatting capabilities and can have some rules that confl
          "ecmaVersion": "latest",
          "sourceType": "module"
        },
-       "plugins": ["react", "prettier"],
        "rules": {
+         // You shouldn't console log to the browser things that users shouldn't see. Remove this to be reminded to remove
+         // your logs so they don't end up in production.
+         "eslint no-console": "off",
          "max-classes-per-file": "off",
          // File extensions are required on import statements in the back-end if import syntax is enabled via package.json
          // "type": "module". This rule can be removed if import syntax is not used in the back-end.

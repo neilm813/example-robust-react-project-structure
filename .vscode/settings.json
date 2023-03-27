@@ -5,5 +5,16 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["appbar", "esbenp", "fontsource", "haspopup", "npmrc", "plusplus", "roboto", "tanstack"]
+  "cSpell.words": [
+    "Anson",
+    "appbar",
+    "dbaeumer",
+    "esbenp",
+    "fontsource",
+    "haspopup",
+    "npmrc",
+    "plusplus",
+    "roboto",
+    "tanstack"
+  ]
 }
