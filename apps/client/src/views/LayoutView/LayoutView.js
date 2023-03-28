@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom';
 import { Box, Container } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 
 import { TopAppBar } from '../../components';
 
@@ -9,13 +9,10 @@ import { TopAppBar } from '../../components';
 export const LayoutView = (_props) => (
   <Box>
     <TopAppBar />
-    {/*
-      Outlet will be the view component that's matched based on the path from the
-      views nested inside the Layout <Route> in index.js
-
-      This let's us choose where in the Layout to render the active view.
-      */}
     <Container sx={{ pt: 3 }}>
+      {/*
+        Outlet let's us choose where in this layout to render the active view 
+      */}
       <Outlet />
     </Container>
   </Box>
