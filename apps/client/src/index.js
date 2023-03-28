@@ -8,9 +8,9 @@ import '@fontsource/roboto/700.css';
 // https://reactrouter.com/docs/en/v6/getting-started/overview#configuring-routes
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import reportWebVitals from './reportWebVitals';
 import { App } from './App';
-import { DestinationsView, LayoutView, HomeView, NotFoundView, OneDestinationView, NewDestinationView } from './views';
+import reportWebVitals from './reportWebVitals';
+import { DestinationsView, HomeView, LayoutView, NewDestinationView, NotFoundView, OneDestinationView } from './views';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
