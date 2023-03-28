@@ -6,11 +6,16 @@
     "node": true
   },
   "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended", "airbnb", "prettier"],
-  "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [],
   "rules": {
     // You shouldn't console log to the browser things that users shouldn't see. Remove this to be reminded to remove
     // your logs so they don't end up in production.
