@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 
 export const NewDestinationView = (_props) => {
+  // https://codesandbox.io/s/react-hook-form-with-ui-library-forked-fp5r3?file=/src/index.js
   const handleSubmit = () => console.log('submit');
 
   return (

@@ -4,15 +4,13 @@ import { Outlet } from 'react-router-dom';
 import { TopAppBar } from '../../components';
 
 /**
- * A common layout and style to be consistently applied to the all child views.
+ * When the url matches the path of a view that is nested inside of the LayoutView route in index.js, it will be
+ * rendered where `<Outlet />` is placed so that those nested views all
  */
 export const LayoutView = (_props) => (
   <Box>
     <TopAppBar />
     <Container sx={{ pt: 3 }}>
-      {/*
-        Outlet let's us choose where in this layout to render the active view 
-      */}
       <Outlet />
     </Container>
   </Box>
