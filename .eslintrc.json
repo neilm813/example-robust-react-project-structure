@@ -20,6 +20,10 @@
     // You shouldn't console log to the browser things that users shouldn't see. Remove this to be reminded to remove
     // your logs so they don't end up in production.
     "no-console": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }
+    ],
     "max-classes-per-file": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-unused-vars": [
