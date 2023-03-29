@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Checkbox,
   Divider,
   FormControl,
@@ -12,10 +13,36 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
 export const NewDestinationView = (_props) => {
-  // https://codesandbox.io/s/react-hook-form-with-ui-library-forked-fp5r3?file=/src/index.js
-  const handleSubmit = () => console.log('submit');
+  const {
+    control,
+    formState: { errors, isValid },
+    handleSubmit,
+    trigger,
+    watch,
+  } = useForm({
+    mode: 'all',
+    defaultValues: {
+      location: '',
+      description: '',
+      src: '',
+      srcType: 'Img',
+      summer: true,
+      winter: false,
+      spring: false,
+      fall: false,
+    },
+  });
+
+  useEffect(() => {
+    // Trigger initial validation before any changes have been made.
+    trigger();
+  }, [trigger]);
+
+  const formValues = watch();
 
   return (
     <Paper elevation={3} sx={{ p: 3 }}>
@@ -29,28 +56,95 @@ export const NewDestinationView = (_props) => {
         sx={{
           '& .MuiTextField-root': { mb: 2 },
         }}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(async (data) => {
+          console.log(data);
+        })}
       >
-        <TextField label="Location" />
-        <TextField fullWidth label="Description" multiline rows={4} />
-        <TextField fullWidth label="Media Url" />
+        <Controller
+          control={control}
+          name="location"
+          rules={{ required: 'Required field', minLength: { value: 2, message: 'Minimum length is 2' } }}
+          render={({ field }) => (
+            <TextField label="Location" error={!!errors?.location} helperText={errors?.location?.message} {...field} />
+          )}
+        />
+        <Controller
+          control={control}
+          name="description"
+          rules={{ required: 'Required field', minLength: { value: 5, message: 'Minimum length is 5' } }}
+          render={({ field }) => (
+            <TextField
+              label="Description"
+              multiline
+              fullWidth
+              rows={4}
+              error={!!errors?.description}
+              helperText={errors?.description?.message}
+              {...field}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="src"
+          rules={{ required: 'Required field', minLength: { value: 2, message: 'Minimum length is 2' } }}
+          render={({ field }) => (
+            <TextField fullWidth label="Media Url" error={!!errors?.src} helperText={errors?.src?.message} {...field} />
+          )}
+        />
 
         <FormControl sx={{ width: '25%' }}>
           <InputLabel>Media Url Type</InputLabel>
-          <Select label="Media Url Type">
-            <MenuItem value="Img">Image</MenuItem>
-            <MenuItem value="Google Maps Embed">Google Maps Embed</MenuItem>
-            <MenuItem value="Youtube Embed">Youtube Embed</MenuItem>
-          </Select>
+          <Controller
+            control={control}
+            name="srcType"
+            rules={{ required: 'Required field' }}
+            render={({ field }) => (
+              <Select label="Media Url Type" value={formValues.srcType} error={!!errors?.srcType} {...field}>
+                <MenuItem value="Img">Image</MenuItem>
+                <MenuItem value="Google Maps Embed">Google Maps Embed</MenuItem>
+                <MenuItem value="Youtube Embed">Youtube Embed</MenuItem>
+              </Select>
+            )}
+          />
         </FormControl>
 
-        <FormGroup sx={{ mt: 2 }}>
+        <FormGroup sx={{ my: 2 }}>
           <Typography variant="h5">Travel Seasons</Typography>
-          <FormControlLabel defaultChecked control={<Checkbox />} label="Summer" />
-          <FormControlLabel control={<Checkbox />} label="Winter" />
-          <FormControlLabel control={<Checkbox />} label="Spring" />
-          <FormControlLabel control={<Checkbox />} label="Fall" />
+          <Controller
+            name="summer"
+            control={control}
+            render={({ field }) => (
+              <FormControlLabel control={<Checkbox />} label="Summer" checked={formValues.summer} {...field} />
+            )}
+          />
+          <Controller
+            name="winter"
+            control={control}
+            render={({ field }) => (
+              <FormControlLabel control={<Checkbox />} label="Winter" checked={formValues.winter} {...field} />
+            )}
+          />
+          <Controller
+            name="spring"
+            control={control}
+            render={({ field }) => (
+              <FormControlLabel control={<Checkbox />} label="Spring" checked={formValues.spring} {...field} />
+            )}
+          />
+          <Controller
+            name="fall"
+            control={control}
+            render={({ field }) => (
+              <FormControlLabel control={<Checkbox />} label="Fall" checked={formValues.fall} {...field} />
+            )}
+          />
         </FormGroup>
+
+        <Button variant="outlined" type="submit" disabled={!isValid}>
+          Submit
+        </Button>
       </Box>
     </Paper>
   );
