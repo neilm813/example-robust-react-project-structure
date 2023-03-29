@@ -1,10 +1,10 @@
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
 import 'dotenv/config.js';
 import './configs/index.js';
 
-import { destinationRouter } from './routes/index.js';
 import * as middleware from './middleware/index.js';
+import { destinationRouter } from './routes/index.js';
 
 const app = express();
 app.use(cors());
