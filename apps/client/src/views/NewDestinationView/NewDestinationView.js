@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Checkbox,
@@ -13,15 +14,22 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+import { createDestination } from '../../services';
 
 export const NewDestinationView = (_props) => {
+  const navigate = useNavigate();
+  const [apiValidations, setApiValidations] = useState(null);
+  const [alertError, setAlertError] = useState(null);
+
   const {
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     handleSubmit,
-    trigger,
+    // trigger,
     watch,
   } = useForm({
     mode: 'all',
@@ -37,35 +45,66 @@ export const NewDestinationView = (_props) => {
     },
   });
 
-  useEffect(() => {
-    // Trigger initial validation before any changes have been made.
-    trigger();
-  }, [trigger]);
+  // useEffect(() => {
+  //   // Trigger initial validation before any changes have been made.
+  //   trigger();
+  // }, [trigger]);
 
   const formValues = watch();
+
+  const handleSubmitNewDestination = handleSubmit(async (formData) => {
+    if (isSubmitting) {
+      // Block spam submissions. Disabling the button immediately interrupts the button ripple animation.
+      return;
+    }
+
+    try {
+      const newDestination = await createDestination(formData);
+      console.log(newDestination);
+      navigate(`/destinations/${newDestination._id}`);
+    } catch (error) {
+      console.log(error);
+      if (error?.response?.data?.code === 'VALIDATION_ERROR') {
+        setApiValidations(error.response.data.errors);
+      } else if (error?.response?.data?.message) {
+        // The server error response contained a 'message'
+        setAlertError(error.response.data.message);
+      } else {
+        // The server error response didn't contain a 'message', this is the axios error.message
+        setAlertError(`Something went wrong, please try again: ${error.message}`);
+      }
+    }
+  });
 
   return (
     <Paper elevation={3} sx={{ p: 3 }}>
       <Typography textAlign="center" variant="h3">
         Plan A Trip
       </Typography>
-      <Divider light sx={{ marginBottom: 3 }} />
-
+      <Divider light sx={{ marginBottom: 2 }} />
+      {alertError !== null && (
+        <Alert severity="error" sx={{ marginBottom: 2 }}>
+          {alertError}
+        </Alert>
+      )}
       <Box
         component="form"
         sx={{
           '& .MuiTextField-root': { mb: 2 },
         }}
-        onSubmit={handleSubmit(async (data) => {
-          console.log(data);
-        })}
+        onSubmit={handleSubmitNewDestination}
       >
         <Controller
           control={control}
           name="location"
-          rules={{ required: 'Required field', minLength: { value: 2, message: 'Minimum length is 2' } }}
+          rules={{ required: 'Required field', minLength: { value: 1, message: 'Minimum length is 2' } }}
           render={({ field }) => (
-            <TextField label="Location" error={!!errors?.location} helperText={errors?.location?.message} {...field} />
+            <TextField
+              label="Location"
+              error={!!errors?.location || !!apiValidations?.location}
+              helperText={errors?.location?.message || apiValidations?.location?.message}
+              {...field}
+            />
           )}
         />
         <Controller
@@ -78,8 +117,8 @@ export const NewDestinationView = (_props) => {
               multiline
               fullWidth
               rows={4}
-              error={!!errors?.description}
-              helperText={errors?.description?.message}
+              error={!!errors?.description || !!apiValidations?.description}
+              helperText={errors?.description?.message || apiValidations?.description?.message}
               {...field}
             />
           )}
@@ -90,7 +129,13 @@ export const NewDestinationView = (_props) => {
           name="src"
           rules={{ required: 'Required field', minLength: { value: 2, message: 'Minimum length is 2' } }}
           render={({ field }) => (
-            <TextField fullWidth label="Media Url" error={!!errors?.src} helperText={errors?.src?.message} {...field} />
+            <TextField
+              fullWidth
+              label="Media Url"
+              error={!!errors?.src || !!apiValidations?.src}
+              helperText={errors?.src?.message || apiValidations?.src?.message}
+              {...field}
+            />
           )}
         />
 
@@ -101,7 +146,12 @@ export const NewDestinationView = (_props) => {
             name="srcType"
             rules={{ required: 'Required field' }}
             render={({ field }) => (
-              <Select label="Media Url Type" value={formValues.srcType} error={!!errors?.srcType} {...field}>
+              <Select
+                label="Media Url Type"
+                value={formValues.srcType}
+                error={!!errors?.srcType || !!apiValidations?.srcType}
+                {...field}
+              >
                 <MenuItem value="Img">Image</MenuItem>
                 <MenuItem value="Google Maps Embed">Google Maps Embed</MenuItem>
                 <MenuItem value="Youtube Embed">Youtube Embed</MenuItem>

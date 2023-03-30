@@ -6,13 +6,12 @@ Separation of concerns:
 
 import {
   createDestination,
+  createManyDestinations,
+  deleteDestination,
   getAllDestinations,
   getOneDestination,
-  deleteDestination,
   updateDestination,
-  createManyDestinations,
 } from '../services/index.js';
-
 import { ApiError } from '../utils/index.js';
 
 export const handleCreateDestination = async (req, res, next) => {

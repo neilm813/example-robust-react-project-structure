@@ -4,21 +4,21 @@ const DestinationSchema = new mongoose.Schema(
   {
     location: {
       type: String,
-      required: [true, 'required field'],
-      minlength: [2, '{MINLENGTH} characters required'],
+      required: [true, 'Required field'],
+      minlength: [2, 'Minimum length is {MINLENGTH}'],
     },
     description: {
       type: String,
-      required: [true, 'required field'],
-      minlength: [5, '{MINLENGTH} characters required'],
+      required: [true, 'Required field'],
+      minlength: [5, 'Minimum length is {MINLENGTH}'],
     },
     src: {
       type: String,
-      required: [true, 'required field'],
+      required: [true, 'Required field'],
     },
     srcType: {
       type: String,
-      required: [true, 'required field'],
+      required: [true, 'Required field'],
     },
     // Checkboxes for the season's you'd like to travel to this destination
 

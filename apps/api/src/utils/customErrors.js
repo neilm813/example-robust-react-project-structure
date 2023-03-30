@@ -36,13 +36,14 @@ export class FieldError {
  * ```
  */
 export class ApiError extends Error {
-  constructor({ message, statusCode = 500, cause }) {
+  constructor({ message, statusCode = 500, cause, code = 'API_ERROR' }) {
     if (cause instanceof Error) {
       super(typeof message === 'string' ? message : cause.message);
     } else {
       super(typeof message === 'string' ? message : 'Unexpected error.');
     }
 
+    this.code = code;
     /** To be used with `res.status` */
     this.statusCode = statusCode;
 
@@ -60,6 +61,7 @@ export class ApiError extends Error {
    */
   toJSON() {
     return {
+      code: this.code,
       message: this.message,
       statusCode: this.statusCode,
     };
@@ -82,7 +84,7 @@ source code to see the structure of a libraries errors.
  */
 export class NormalizedValidationError extends ApiError {
   constructor(error) {
-    super({ message: error.message, statusCode: 400, cause: error });
+    super({ message: error.message, statusCode: 400, cause: error, code: 'VALIDATION_ERROR' });
 
     this.errors = {};
 
