@@ -10,11 +10,6 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
   "overrides": [],
   "rules": {
     // You shouldn't console log to the browser things that users shouldn't see. Remove this to be reminded to remove
@@ -25,6 +20,7 @@
       { "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }
     ],
     "max-classes-per-file": "off",
+    "no-underscore-dangle": ["error", { "allow": [/* mongo db */ "_id", "_type"] }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-unused-vars": [
       "warn",
