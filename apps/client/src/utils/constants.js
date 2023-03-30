@@ -10,4 +10,4 @@ shared constants so they are not duplicated and can easily be updated and then
 every arg that uses the const will be passing in the updated value.
 */
 
-export const COMPANY_NAME = 'SpaceX';
+export const COMPANY_NAME = 'Trip Planned';
