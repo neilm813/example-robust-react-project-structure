@@ -1,9 +1,9 @@
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import { Box, Card, CardContent, CardMedia, CircularProgress, Typography } from '@mui/material';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
-import { getOneDestination } from '../../services';
 import { ShowError } from '../../components';
+import { getOneDestination } from '../../services';
 
 export const OneDestinationView = (_props) => {
   const { id } = useParams();
